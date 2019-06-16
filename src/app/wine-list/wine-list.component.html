@@ -1,0 +1,30 @@
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Appellation</th>
+          <th scope="col">Nom du château</th>
+          <th scope="col">Type</th>
+          <th scope="col">Millésime</th>
+          <th scope="col">Nb Bouteilles Achetées</th>
+          <th scope="col">Déstockage</th>
+          <th scope="col">Nb Bouteilles en Stock</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let wine of wines">
+          <td>{{ wine.id }}</td>
+          <td>{{ wine.appellation }}</td>
+          <td>{{ wine.nomChateau }}</td>
+          <td>{{ wine.type }}</td>
+          <td>{{ wine.millesime }}</td>
+          <td>{{ wine.nbBouteillesAchetees }}</td>
+          <td>{{ wine.destockage }}</td>
+          <td>{{ wine.nbBouteillesStock }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
