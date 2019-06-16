@@ -4,6 +4,7 @@ import { WineListComponent } from './wine-list/wine-list.component';
 import { WineFormComponent } from './wine-form/wine-form.component';
  
 const routes: Routes = [
+  { path: '', component: WineListComponent },
   { path: 'wines', component: WineListComponent },
   { path: 'addwine', component: WineFormComponent }
 ];
