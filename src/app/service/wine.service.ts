@@ -6,19 +6,23 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class WineService {
 
-  private wines: string;
-  private addWine: string;
+  private editWineButton: string;
+  private deletetWineButton: string;
+  private winesUrl: string;
+  private saveWineUrl: string;
 
   constructor(private http: HttpClient) {
-    this.wines = 'http://localhost:8080/wines';
-    this.addWine = 'http://localhost:8080/addWine';
+    this.editWineButton = "Modifier";
+    this.deletetWineButton = "Supprimer";
+    this.winesUrl = 'http://localhost:8080/wines';
+    this.saveWineUrl = 'http://localhost:8080/saveWine';
   }
 
   public findAll(): Observable<Wine[]> {
-    return this.http.get<Wine[]>(this.wines);
+    return this.http.get<Wine[]>("http://localhost:8080/wines");
   }
 
   public save(wine: Wine) {
-    return this.http.post<Wine>(this.addWine, wine);
+    return this.http.post<Wine>("http://localhost:8080/saveWine", wine);
   }
 }

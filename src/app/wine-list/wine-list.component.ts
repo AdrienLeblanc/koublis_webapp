@@ -10,6 +10,7 @@ import { WineService } from '../service/wine.service';
 export class WineListComponent implements OnInit {
  
   wines: Wine[];
+  wine: Wine;
  
   constructor(private wineService: WineService) {
   }
@@ -18,5 +19,24 @@ export class WineListComponent implements OnInit {
     this.wineService.findAll().subscribe(data => {
       this.wines = data;
     });
+  }
+
+  onChange(wine: Wine) {
+    this.wineService.save(wine).subscribe();
+  }
+
+  changeBouteillesAchetees(wine: Wine) {
+    wine.nbBouteillesStock = wine.nbBouteillesAchetees - wine.destockage;
+    this.wineService.save(wine).subscribe();
+  }
+
+  changeDestockage(wine: Wine) {
+    wine.nbBouteillesStock = wine.nbBouteillesAchetees - wine.destockage;
+    this.wineService.save(wine).subscribe();
+  }
+
+  changeBouteillesStock(wine: Wine) {
+    wine.destockage = wine.nbBouteillesAchetees - wine.nbBouteillesStock;
+    this.wineService.save(wine).subscribe();
   }
 }

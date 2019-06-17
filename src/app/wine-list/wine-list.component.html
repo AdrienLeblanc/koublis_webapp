@@ -1,30 +1,46 @@
-<div class="card my-5">
-  <div class="card-body">
-    <table class="table table-bordered table-striped">
-      <thead class="thead-dark">
-        <tr>
+<div class="table-responsive-sm">
+  <table class="table table-striped table-hover text-center table-sm">
+    <caption>Liste des vins</caption>
+    <thead class="thead-light">
+      <tr>
           <th scope="col">#</th>
           <th scope="col">Appellation</th>
           <th scope="col">Nom du château</th>
           <th scope="col">Type</th>
           <th scope="col">Millésime</th>
           <th scope="col">Nb Bouteilles Achetées</th>
+          <th scope="col">Nb Bouteilles Stock</th>
           <th scope="col">Déstockage</th>
-          <th scope="col">Nb Bouteilles en Stock</th>
         </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let wine of wines">
-          <td>{{ wine.id }}</td>
-          <td>{{ wine.appellation }}</td>
-          <td>{{ wine.nomChateau }}</td>
-          <td>{{ wine.type }}</td>
-          <td>{{ wine.millesime }}</td>
-          <td>{{ wine.nbBouteillesAchetees }}</td>
-          <td>{{ wine.destockage }}</td>
-          <td>{{ wine.nbBouteillesStock }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    </thead>
+    <tbody>
+      <tr *ngFor="let wine of wines" scope="row">
+        <th> {{ wine.id }} </th>
+        <td class="input-group-sm">
+          <input type="text" [(ngModel)]="wine.appellation" readonly/>
+        </td>
+        <td class="input-group-sm">
+          <input type="text" [(ngModel)]="wine.nomChateau" readonly/>
+        </td>
+        <td class="input-group-sm">
+          <input type="text" [(ngModel)]="wine.type" readonly/>
+        </td>
+        <td class="input-group-sm">
+          <input type="text" [(ngModel)]="wine.millesime" readonly/>
+        </td>
+        <td class="input-group-sm">
+          <input type="number" [(ngModel)]="wine.nbBouteillesAchetees"
+          (ngModelChange)="changeBouteillesAchetees(wine)" min={{wine.destockage}}/>
+        </td>
+        <td class="input-group-sm">
+          <input type="number" [(ngModel)]="wine.nbBouteillesStock"
+          (ngModelChange)="changeBouteillesStock(wine)" min=0 max={{wine.nbBouteillesAchetees}}/>
+        </td>
+        <td class="input-group-sm">
+          <input type="number" [(ngModel)]="wine.destockage"
+          (ngModelChange)="changeDestockage(wine)" min=0 max={{wine.nbBouteillesAchetees}}/>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
