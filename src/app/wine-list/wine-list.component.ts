@@ -39,4 +39,12 @@ export class WineListComponent implements OnInit {
     wine.destockage = wine.nbBouteillesAchetees - wine.nbBouteillesStock;
     this.wineService.save(wine).subscribe();
   }
+
+  edit(wine: Wine) {
+    wine.onEdit = !wine.onEdit;
+  }
+
+  isOnEdit(wine: Wine): boolean {
+    return wine.onEdit;
+  }
 }

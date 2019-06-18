@@ -7,4 +7,9 @@ export class Wine {
   nbBouteillesAchetees: number;
   destockage: number;
   nbBouteillesStock: number;
+  onEdit: boolean;
+
+  isOnEdit(): boolean {
+    return this.onEdit;
+  }
 }

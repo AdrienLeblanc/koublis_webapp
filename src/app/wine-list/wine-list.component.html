@@ -1,44 +1,90 @@
-<div class="table-responsive-sm">
-  <table class="table table-striped table-hover text-center table-sm">
-    <caption>Liste des vins</caption>
+<div class="container">
+  <table class="table table-responsive-sm table-striped table-hover text-center table-sm">
     <thead class="thead-light">
       <tr>
-          <th scope="col">#</th>
-          <th scope="col">Appellation</th>
-          <th scope="col">Nom du château</th>
-          <th scope="col">Type</th>
-          <th scope="col">Millésime</th>
-          <th scope="col">Nb Bouteilles Achetées</th>
-          <th scope="col">Nb Bouteilles Stock</th>
-          <th scope="col">Déstockage</th>
-        </tr>
+        <th>#</th>
+        <th>Appellation</th>
+        <th>Nom du château</th>
+        <th>Type</th>
+        <th>Millésime</th>
+        <th>Nb Bouteilles Achetées</th>
+        <th>Nb Bouteilles Stock</th>
+        <th>Déstockage</th>
+      </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let wine of wines" scope="row">
+      <tr *ngFor="let wine of wines">
         <th> {{ wine.id }} </th>
-        <td class="input-group-sm">
-          <input type="text" [(ngModel)]="wine.appellation" readonly/>
+        <td>
+          <div *ngIf="isOnEdit(wine); then thenBlockAppelation else elseBlockAppelation"></div>
+          <ng-template #thenBlockAppelation>
+              <input class="form-control text-center" type="text" [(ngModel)]="wine.appellation"/>
+          </ng-template>
+          <ng-template #elseBlockAppelation>
+              <span class="form-control-plaintext text-center">{{ wine.appellation }} </span>
+          </ng-template>
         </td>
-        <td class="input-group-sm">
-          <input type="text" [(ngModel)]="wine.nomChateau" readonly/>
+        <td>
+          <div *ngIf="isOnEdit(wine); then thenBlockNomChateau else elseBlockNomChateau"></div>
+          <ng-template #thenBlockNomChateau>
+              <input class="form-control text-center" type="text" [(ngModel)]="wine.nomChateau"/>
+          </ng-template>
+          <ng-template #elseBlockNomChateau>
+              <span class="form-control-plaintext text-center" *ngIf="!isOnEdit(wine)">{{ wine.nomChateau }} </span>
+          </ng-template>
         </td>
-        <td class="input-group-sm">
-          <input type="text" [(ngModel)]="wine.type" readonly/>
+        <td>
+          <div *ngIf="isOnEdit(wine); then thenBlockType else elseBlockType"></div>
+          <ng-template #thenBlockType>
+              <input class="form-control text-center" type="text" [(ngModel)]="wine.type"/>
+          </ng-template>
+          <ng-template #elseBlockType>
+              <span class="form-control-plaintext text-center" *ngIf="!isOnEdit(wine)">{{ wine.type }} </span>
+          </ng-template>
         </td>
-        <td class="input-group-sm">
-          <input type="text" [(ngModel)]="wine.millesime" readonly/>
+        <td>
+          <div *ngIf="isOnEdit(wine); then thenBlockMillesime else elseBlockMillesime"></div>
+          <ng-template #thenBlockMillesime>
+              <input class="form-control text-center" type="text" [(ngModel)]="wine.millesime"/>
+          </ng-template>
+          <ng-template #elseBlockMillesime>
+              <span class="form-control-plaintext text-center" *ngIf="!isOnEdit(wine)">{{ wine.millesime }} </span>
+          </ng-template>
         </td>
-        <td class="input-group-sm">
-          <input type="number" [(ngModel)]="wine.nbBouteillesAchetees"
-          (ngModelChange)="changeBouteillesAchetees(wine)" min={{wine.destockage}}/>
+        <td>
+          <div *ngIf="isOnEdit(wine); then thenBlockNbBouteillesAchetees else elseBlockNbBouteillesAchetees"></div>
+          <ng-template #thenBlockNbBouteillesAchetees>
+              <input class="form-control text-center" type="number" [(ngModel)]="wine.nbBouteillesAchetees"
+              (ngModelChange)="changeBouteillesAchetees(wine)" min={{wine.destockage}}/>
+          </ng-template>
+          <ng-template #elseBlockNbBouteillesAchetees>
+              <span class="form-control-plaintext text-center" *ngIf="!isOnEdit(wine)">{{ wine.nbBouteillesAchetees }} </span>
+          </ng-template>
         </td>
-        <td class="input-group-sm">
-          <input type="number" [(ngModel)]="wine.nbBouteillesStock"
-          (ngModelChange)="changeBouteillesStock(wine)" min=0 max={{wine.nbBouteillesAchetees}}/>
+        <td>
+          <div *ngIf="isOnEdit(wine); then thenBlockNbBouteillesStock else elseBlockNbBouteillesStock"></div>
+          <ng-template #thenBlockNbBouteillesStock>
+              <input class="form-control text-center" type="number" [(ngModel)]="wine.nbBouteillesStock"
+              (ngModelChange)="changeBouteillesStock(wine)" min=0 max={{wine.nbBouteillesAchetees}}/>
+          </ng-template>
+          <ng-template #elseBlockNbBouteillesStock>
+              <span class="form-control-plaintext text-center" *ngIf="!isOnEdit(wine)">{{ wine.nbBouteillesStock }} </span>
+          </ng-template>
         </td>
-        <td class="input-group-sm">
-          <input type="number" [(ngModel)]="wine.destockage"
-          (ngModelChange)="changeDestockage(wine)" min=0 max={{wine.nbBouteillesAchetees}}/>
+        <td>
+          <div *ngIf="isOnEdit(wine); then thenBlockDestockage else elseBlockDestockage"></div>
+          <ng-template #thenBlockDestockage>
+              <input class="form-control text-center" type="number" [(ngModel)]="wine.destockage"
+              (ngModelChange)="changeDestockage(wine)" min=0 max={{wine.nbBouteillesAchetees}}/>
+          </ng-template>
+          <ng-template #elseBlockDestockage>
+              <span class="form-control-plaintext text-center" *ngIf="!isOnEdit(wine)">{{ wine.destockage }} </span>
+          </ng-template>
+        </td>
+        <td>
+          <button type="button" class="btn btn-sm btn-success" (click)="edit(wine)">
+            <span class="glyphicon glyphicon-pencil"></span> Edit 
+          </button>
         </td>
       </tr>
     </tbody>
