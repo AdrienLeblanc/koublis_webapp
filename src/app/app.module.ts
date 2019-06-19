@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { WineListComponent } from './wine-list/wine-list.component';
 import { WineFormComponent } from './wine-form/wine-form.component';
 import { WineService } from './service/wine.service';
- 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +21,6 @@ import { WineService } from './service/wine.service';
     FormsModule
   ],
   providers: [WineService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -8,7 +8,7 @@ import { WineService } from '../service/wine.service';
   styleUrls: ['./wine-list.component.css']
 })
 export class WineListComponent implements OnInit {
- 
+
   wines: Wine[];
   wine: Wine;
  
@@ -46,5 +46,9 @@ export class WineListComponent implements OnInit {
 
   isOnEdit(wine: Wine): boolean {
     return wine.onEdit;
+  }
+
+  delete(wine: Wine) {
+
   }
 }

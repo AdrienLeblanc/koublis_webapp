@@ -1,24 +1,26 @@
 <div class="container">
-  <table class="table table-responsive-sm table-striped table-hover text-center table-sm">
+  <table class="table table-bordered table-responsive-sm table-striped table-hover text-center table-sm" style="background-color: white">
     <thead class="thead-light">
       <tr>
-        <th>#</th>
-        <th>Appellation</th>
-        <th>Nom du château</th>
-        <th>Type</th>
-        <th>Millésime</th>
-        <th>Nb Bouteilles Achetées</th>
-        <th>Nb Bouteilles Stock</th>
-        <th>Déstockage</th>
+        <th style="width: 3%">#</th>
+        <th style="width: 20%">Appellation</th>
+        <th style="width: 20%">Nom du château</th>
+        <th style="width: 10%">Type</th>
+        <th style="width: 10%">Millésime</th>
+        <th style="width: 9%">Achats</th>
+        <th style="width: 9%">Stock</th>
+        <th style="width: 9%">Déstockage</th>
+        <th style="width: 10%">Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let wine of wines">
-        <th> {{ wine.id }} </th>
+      <tr *ngFor="let wine of wines; let i = index" [ngClass]="{'table-warning': wine.nbBouteillesStock === 0, '': wine.nbBouteillesStock !== 0 }">
+        <th> {{ i + 1 }} </th>
         <td>
           <div *ngIf="isOnEdit(wine); then thenBlockAppelation else elseBlockAppelation"></div>
           <ng-template #thenBlockAppelation>
-              <input class="form-control text-center" type="text" [(ngModel)]="wine.appellation"/>
+              <input class="form-control text-center" type="text" [(ngModel)]="wine.appellation"
+              (ngModelChange)="onChange(wine)"/>
           </ng-template>
           <ng-template #elseBlockAppelation>
               <span class="form-control-plaintext text-center">{{ wine.appellation }} </span>
@@ -27,7 +29,8 @@
         <td>
           <div *ngIf="isOnEdit(wine); then thenBlockNomChateau else elseBlockNomChateau"></div>
           <ng-template #thenBlockNomChateau>
-              <input class="form-control text-center" type="text" [(ngModel)]="wine.nomChateau"/>
+              <input class="form-control text-center" type="text" [(ngModel)]="wine.nomChateau"
+              (ngModelChange)="onChange(wine)"/>
           </ng-template>
           <ng-template #elseBlockNomChateau>
               <span class="form-control-plaintext text-center" *ngIf="!isOnEdit(wine)">{{ wine.nomChateau }} </span>
@@ -36,7 +39,8 @@
         <td>
           <div *ngIf="isOnEdit(wine); then thenBlockType else elseBlockType"></div>
           <ng-template #thenBlockType>
-              <input class="form-control text-center" type="text" [(ngModel)]="wine.type"/>
+              <input class="form-control text-center" type="text" [(ngModel)]="wine.type"
+              (ngModelChange)="onChange(wine)"/>
           </ng-template>
           <ng-template #elseBlockType>
               <span class="form-control-plaintext text-center" *ngIf="!isOnEdit(wine)">{{ wine.type }} </span>
@@ -45,7 +49,8 @@
         <td>
           <div *ngIf="isOnEdit(wine); then thenBlockMillesime else elseBlockMillesime"></div>
           <ng-template #thenBlockMillesime>
-              <input class="form-control text-center" type="text" [(ngModel)]="wine.millesime"/>
+              <input class="form-control text-center" type="text" [(ngModel)]="wine.millesime"
+              (ngModelChange)="onChange(wine)"/>
           </ng-template>
           <ng-template #elseBlockMillesime>
               <span class="form-control-plaintext text-center" *ngIf="!isOnEdit(wine)">{{ wine.millesime }} </span>
@@ -68,7 +73,8 @@
               (ngModelChange)="changeBouteillesStock(wine)" min=0 max={{wine.nbBouteillesAchetees}}/>
           </ng-template>
           <ng-template #elseBlockNbBouteillesStock>
-              <span class="form-control-plaintext text-center" *ngIf="!isOnEdit(wine)">{{ wine.nbBouteillesStock }} </span>
+              <span class="form-control-plaintext text-center" *ngIf="!isOnEdit(wine)"
+              [ngClass]="{'text-danger': wine.nbBouteillesStock === 0, '': wine.nbBouteillesStock !== 0 }">{{ wine.nbBouteillesStock }} </span>
           </ng-template>
         </td>
         <td>
@@ -82,9 +88,20 @@
           </ng-template>
         </td>
         <td>
-          <button type="button" class="btn btn-sm btn-success" (click)="edit(wine)">
-            <span class="glyphicon glyphicon-pencil"></span> Edit 
-          </button>
+          <div *ngIf="isOnEdit(wine); then thenBlockButton else elseBlockButton"></div>
+          <ng-template #thenBlockButton>
+            <button type="button" class="btn btn-sm btn-info" (click)="edit(wine)">
+              <span class="glyphicon glyphicon-pencil"></span>Terminer
+            </button>
+          </ng-template>
+          <ng-template #elseBlockButton>
+            <button type="button" class="btn btn-sm btn-success" (click)="edit(wine)">
+              <span class="glyphicon glyphicon-pencil"></span>Éditer
+            </button>
+          </ng-template>
+          <button type="button" class="btn btn-sm btn-danger" (click)="delete(wine)">
+              <span class="glyphicon glyphicon-ban-circle">Supprimer</span>
+            </button>
         </td>
       </tr>
     </tbody>

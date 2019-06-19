@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WineService } from '../service/wine.service';
 import { Wine } from '../model/wine';
+
  
 @Component({
   selector: 'app-wine-form',
