@@ -12,17 +12,13 @@ export class WineService {
   private saveWineUrl: string;
 
   constructor(private http: HttpClient) {
-    this.editWineButton = "Modifier";
-    this.deletetWineButton = "Supprimer";
-    this.winesUrl = 'http://localhost:8080/wines';
-    this.saveWineUrl = 'http://localhost:8080/saveWine';
   }
 
   public findAll(): Observable<Wine[]> {
-    return this.http.get<Wine[]>("http://localhost:8080/wines");
+    return this.http.get<Wine[]>("http://localhost:8081/wines");
   }
 
   public save(wine: Wine) {
-    return this.http.post<Wine>("http://localhost:8080/saveWine", wine);
+    return this.http.post<Wine>("http://localhost:8081/saveWine", wine);
   }
 }
