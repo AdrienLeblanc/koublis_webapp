@@ -10,6 +10,6 @@ export class AppComponent {
   title: string;
 
   constructor() {
-    this.title = 'Cave des Koublis - Application web';
+    this.title = 'Cave à vin';
   }
 }
