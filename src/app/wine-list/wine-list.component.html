@@ -90,13 +90,13 @@
         <td>
           <div *ngIf="isOnEdit(wine); then thenBlockButton else elseBlockButton"></div>
           <ng-template #thenBlockButton>
-            <button class="button" class="btn" style="color: Green" (click)="edit(wine)"><i class="fa fa-check" aria-hidden="true"></i></button>
+            <button class="button" class="btn btn-link" style="color: Green" (click)="edit(wine)"><i class="fa fa-check" aria-hidden="true"></i></button>
           </ng-template>
           <ng-template #elseBlockButton>
-            <button class="button" class="btn" (click)="edit(wine)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button class="button" class="btn btn-link" style="color: Black" (click)="edit(wine)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
           </ng-template>
           <button
-            class="button" class="btn" style="color: Red"
+            class="button" class="btn btn-link" style="color: Red"
             mwlConfirmationPopover
             [popoverTitle]="popoverTitle"
             [popoverMessage]="popoverMessage"
