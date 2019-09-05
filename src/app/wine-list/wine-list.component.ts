@@ -14,6 +14,8 @@ export class WineListComponent implements OnInit {
   wine: Wine;
   public popoverTitle: string = 'Suppression';
   public popoverMessage: string = 'Supprimer le vin ?';
+  public confirmText: string = 'Confirmer';
+  public cancelText: string = 'Annuler';
 
   constructor(private wineService: WineService,
               private notificationService: NotificationService) {
