@@ -29,28 +29,22 @@ export class WineListComponent implements OnInit {
       });
   }
 
-  onChange(wine: Wine) {
-    this.wineService.save(wine).subscribe();
-  }
-
   changeBouteillesAchetees(wine: Wine) {
     wine.nbBouteillesStock = wine.nbBouteillesAchetees - wine.destockage;
-    this.wineService.save(wine).subscribe();
   }
 
   changeDestockage(wine: Wine) {
     wine.nbBouteillesStock = wine.nbBouteillesAchetees - wine.destockage;
-    this.wineService.save(wine).subscribe();
   }
 
   changeBouteillesStock(wine: Wine) {
     wine.destockage = wine.nbBouteillesAchetees - wine.nbBouteillesStock;
-    this.wineService.save(wine).subscribe();
   }
 
   edit(wine: Wine) {
     wine.onEdit = !wine.onEdit;
-    if (!wine.onEdit) {
+    if (!wine.onEdit) { // Si on termine l'édition on sauvegarde
+      this.wineService.save(wine).subscribe(() => this.fetchData(), throwable => this.onError());
       this.notificationService.success("Modification effectuée");
       this.fetchData();
     }

@@ -22,11 +22,15 @@ export class WineFormComponent {
 
   onSubmit() {
     this.wine.nbBouteillesStock = this.wine.nbBouteillesAchetees;
-    this.wineService.save(this.wine).subscribe(result => this.gotoWineList());
-    this.notificationService.success("Vin ajouté : " + this.wine.appellation);
+    this.wineService.save(this.wine).subscribe(result => this.onSuccess(), throwable => this.onError());
   }
 
-  gotoWineList() {
+  onSuccess() {
+    this.notificationService.success("Vin ajouté : " + this.wine.appellation);
     this.router.navigate(['/wines']);
+  }
+
+  onError() {
+    this.notificationService.error("Une erreur est survenue pendant l'opération");
   }
 }

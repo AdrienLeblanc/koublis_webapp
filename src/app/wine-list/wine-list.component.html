@@ -19,8 +19,7 @@
         <td>
           <div *ngIf="isOnEdit(wine); then thenBlockAppelation else elseBlockAppelation"></div>
           <ng-template #thenBlockAppelation>
-              <input class="form-control text-center" type="text" [(ngModel)]="wine.appellation"
-              (ngModelChange)="onChange(wine)"/>
+              <input class="form-control text-center" type="text" [(ngModel)]="wine.appellation"/>
           </ng-template>
           <ng-template #elseBlockAppelation>
               <span class="form-control-plaintext text-center">{{ wine.appellation }} </span>
@@ -29,8 +28,7 @@
         <td>
           <div *ngIf="isOnEdit(wine); then thenBlockNomChateau else elseBlockNomChateau"></div>
           <ng-template #thenBlockNomChateau>
-              <input class="form-control text-center" type="text" [(ngModel)]="wine.nomChateau"
-              (ngModelChange)="onChange(wine)"/>
+              <input class="form-control text-center" type="text" [(ngModel)]="wine.nomChateau"/>
           </ng-template>
           <ng-template #elseBlockNomChateau>
               <span class="form-control-plaintext text-center" *ngIf="!isOnEdit(wine)">{{ wine.nomChateau }} </span>
@@ -39,8 +37,7 @@
         <td>
           <div *ngIf="isOnEdit(wine); then thenBlockType else elseBlockType"></div>
           <ng-template #thenBlockType>
-              <input class="form-control text-center" type="text" [(ngModel)]="wine.type"
-              (ngModelChange)="onChange(wine)"/>
+              <input class="form-control text-center" type="text" [(ngModel)]="wine.type"/>
           </ng-template>
           <ng-template #elseBlockType>
               <span class="form-control-plaintext text-center" *ngIf="!isOnEdit(wine)">{{ wine.type }} </span>
@@ -49,8 +46,7 @@
         <td>
           <div *ngIf="isOnEdit(wine); then thenBlockMillesime else elseBlockMillesime"></div>
           <ng-template #thenBlockMillesime>
-              <input class="form-control text-center" type="text" [(ngModel)]="wine.millesime"
-              (ngModelChange)="onChange(wine)"/>
+              <input class="form-control text-center" type="text" [(ngModel)]="wine.millesime"/>
           </ng-template>
           <ng-template #elseBlockMillesime>
               <span class="form-control-plaintext text-center" *ngIf="!isOnEdit(wine)">{{ wine.millesime }} </span>
