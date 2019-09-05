@@ -6,11 +6,6 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class WineService {
 
-  private editWineButton: string;
-  private deletetWineButton: string;
-  private winesUrl: string;
-  private saveWineUrl: string;
-
   constructor(private http: HttpClient) {
   }
 
@@ -20,5 +15,9 @@ export class WineService {
 
   public save(wine: Wine) {
     return this.http.post<Wine>("http://localhost:8081/saveWine", wine);
+  }
+
+  public delete(wine: Wine) {
+    return this.http.post<Wine>("http://localhost:8081/deleteWine", wine);
   }
 }

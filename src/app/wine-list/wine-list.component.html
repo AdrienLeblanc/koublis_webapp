@@ -15,7 +15,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let wine of wines; let i = index" [ngClass]="{'table-warning': wine.nbBouteillesStock === 0, '': wine.nbBouteillesStock !== 0 }">
-        <th> {{ i + 1 }} </th>
+        <th style="vertical-align:middle"> {{ i + 1 }} </th>
         <td>
           <div *ngIf="isOnEdit(wine); then thenBlockAppelation else elseBlockAppelation"></div>
           <ng-template #thenBlockAppelation>
@@ -90,18 +90,24 @@
         <td>
           <div *ngIf="isOnEdit(wine); then thenBlockButton else elseBlockButton"></div>
           <ng-template #thenBlockButton>
-            <button type="button" class="btn btn-sm btn-info" (click)="edit(wine)">
-              <span class="glyphicon glyphicon-pencil"></span>Terminer
+            <button type="button" class="btn btn-block btn-info" (click)="edit(wine)">
+              Terminer
             </button>
           </ng-template>
           <ng-template #elseBlockButton>
-            <button type="button" class="btn btn-sm btn-success" (click)="edit(wine)">
-              <span class="glyphicon glyphicon-pencil"></span>Éditer
+            <button type="button" class="btn btn-block btn-success" (click)="edit(wine)">
+              Éditer
             </button>
           </ng-template>
-          <button type="button" class="btn btn-sm btn-danger" (click)="delete(wine)">
-              <span class="glyphicon glyphicon-ban-circle">Supprimer</span>
-            </button>
+          <button
+            type="button" class="btn btn-block btn-danger"
+            mwlConfirmationPopover
+            [popoverTitle]="popoverTitle"
+            [popoverMessage]="popoverMessage"
+            placement="bottom"
+            (confirm)="delete(wine)">
+            Supprimer
+          </button>
         </td>
       </tr>
     </tbody>
