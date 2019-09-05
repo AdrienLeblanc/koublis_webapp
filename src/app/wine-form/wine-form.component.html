@@ -1,65 +1,66 @@
 <div class="card my-5">
   <div class="card-body">
     <form (ngSubmit)="onSubmit()" #wineForm="ngForm">
-      
+
       <!-- APPELLATION -->
       <div class="form-group">
         <label for="appellation">Appellation</label>
-        <input type="text" [(ngModel)]="wine.appellation" 
+        <input type="text" [(ngModel)]="wine.appellation"
           class="form-control" id="appellation" name="appellation" placeholder="Entrer l'appellation"
           required #appellation="ngModel">
       </div>
       <div [hidden]="!appellation.pristine" class="alert alert-danger">Appellation est requis</div>
-      
+
       <!-- NOM DU CHATEAU -->
       <div class="form-group">
         <label for="nomChateau">Nom du château</label>
-        <input type="text" [(ngModel)]="wine.nomChateau" 
+        <input type="text" [(ngModel)]="wine.nomChateau"
           class="form-control" id="nomChateau" name="nomChateau" placeholder="Entrer le nom du château"
           required #nomChateau="ngModel">
       </div>
       <div [hidden]="!nomChateau.pristine" class="alert alert-danger">Nom du château est requis</div>
-      
+
       <!-- TYPE -->
       <div class="form-group">
         <label for="type">Selectionner le type:</label>
-        <select class="form-control" [(ngModel)]="wine.type" 
-          id="type" name="type">
+        <select class="form-control" [(ngModel)]="wine.type"
+                required  #type="ngModel" id="type" name="type">
           <option value="Rouge" selected>Rouge</option>
           <option value="Blanc">Blanc</option>
           <option value="Rosé">Rosé</option>
         </select>
       </div>
-      
+      <div [hidden]="!type.pristine" class="alert alert-danger">Type est requis</div>
+
       <!-- MILLESIME -->
       <div class="form-group">
         <label for="millesime">Millésime</label>
-        <input type="number" [(ngModel)]="wine.millesime" 
+        <input type="number" [(ngModel)]="wine.millesime"
           class="form-control" id="millesime" name="millesime" placeholder="Entrer le millésime"
           required #millesime="ngModel">
       </div>
       <div [hidden]="!millesime.pristine" class="alert alert-danger">Millésime est requis</div>
-      
+
       <!-- NOMBRE BOUTEILLES ACHETEES -->
       <div class="form-group">
         <label for="nbBouteillesAchetees">Nombre bouteilles achetées</label>
-        <input type="number" [(ngModel)]="wine.nbBouteillesAchetees" 
+        <input type="number" [(ngModel)]="wine.nbBouteillesAchetees"
           class="form-control" id="nbBouteillesAchetees" name="nbBouteillesAchetees" placeholder="Entrer le nombre de bouteilles achetées"
           required #nbBouteillesAchetees="ngModel">
       </div>
-      
+
       <!-- DESTOCKAGE -->
       <div class="form-group">
         <label for="destockage">Déstockage</label>
-        <input type="number" [(ngModel)]="wine.destockage" 
+        <input type="number" [(ngModel)]="wine.destockage"
           class="form-control" id="destockage" name="destockage" placeholder="Entrer le déstockage"
           required #destockage="ngModel">
       </div>
-      
+
       <!-- NOMBRE BOUTEILLES STOCK -->
       <div class="form-group">
         <label for="nbBouteillesStock">Nombre bouteilles stock</label>
-        <input type="number" [(ngModel)]="wine.nbBouteillesStock" 
+        <input type="number" [(ngModel)]="wine.nbBouteillesStock"
           class="form-control" id="nbBouteillesStock" name="nbBouteillesStock" placeholder="Entrer le nombre de bouteilles en stock"
           required #nbBouteillesStock="ngModel">
       </div>
