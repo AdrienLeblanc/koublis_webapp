@@ -46,9 +46,13 @@ export class WineListComponent implements OnInit {
   edit(wine: Wine) {
     wine.onEdit = !wine.onEdit;
     if (!wine.onEdit) { // Si on termine l'édition on sauvegarde
-      this.wineService.save(wine).subscribe(() => this.fetchData(), throwable => this.onError());
-      this.notificationService.success("Modification effectuée");
-      this.fetchData();
+      this.wineService.save(wine).subscribe(
+        () => this.onSuccessEdit(),
+        error => {
+          console.log(error);
+          this.notificationService.error("Une erreur est survenue pendant la modification");
+        }
+      );
     }
   }
 
@@ -57,11 +61,22 @@ export class WineListComponent implements OnInit {
   }
 
   delete(wine: Wine) {
-    this.wineService.delete(wine).subscribe(() => this.fetchData(), throwable => this.onError());
-    this.notificationService.success("Vin supprimé : " + wine.appellation);
+    this.wineService.delete(wine).subscribe(
+      () => this.onSuccessDelete(wine),
+      error => {
+        console.log(error);
+        this.notificationService.error("Une erreur est survenue pendant la suppression");
+      }
+    );
   }
 
-  onError() {
-    this.notificationService.error("Une erreur est survenue pendant l'opération");
+  onSuccessEdit() {
+    this.notificationService.success("Modification effectuée");
+    this.fetchData();
+  }
+
+  onSuccessDelete(wine: Wine) {
+    this.notificationService.success("Suppression effectuée : " + wine.appellation);
+    this.fetchData();
   }
 }
