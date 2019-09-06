@@ -1,31 +1,31 @@
 <div class="card my-5">
   <div class="card-body">
-    <form (ngSubmit)="onSubmit()" #wineForm="ngForm">
+    <form #wineForm="ngForm" (ngSubmit)="onSubmit()">
 
       <!-- APPELLATION -->
       <div class="form-group">
         <label for="appellation">Appellation</label>
-        <input type="text" [(ngModel)]="wine.appellation"
-          class="form-control" id="appellation" name="appellation" placeholder="Entrer l'appellation"
-          required #appellation="ngModel">
+        <input #appellation="ngModel" [(ngModel)]="wine.appellation"
+               class="form-control" id="appellation" name="appellation" placeholder="Entrer l'appellation"
+               required type="text">
       </div>
       <div [hidden]="!appellation.pristine" class="alert alert-danger">Appellation requise</div>
 
       <!-- NOM DU CHATEAU -->
       <div class="form-group">
         <label for="nomChateau">Nom du château</label>
-        <input type="text" [(ngModel)]="wine.nomChateau"
-          class="form-control" id="nomChateau" name="nomChateau" placeholder="Entrer le nom du château"
-          required #nomChateau="ngModel">
+        <input #nomChateau="ngModel" [(ngModel)]="wine.nomChateau"
+               class="form-control" id="nomChateau" name="nomChateau" placeholder="Entrer le nom du château"
+               required type="text">
       </div>
       <div [hidden]="!nomChateau.pristine" class="alert alert-danger">Nom du château requis</div>
 
       <!-- TYPE -->
       <div class="form-group">
         <label for="type">Sélectionner le type:</label>
-        <select class="form-control" [(ngModel)]="wine.type"
-                required  #type="ngModel" id="type" name="type">
-          <option value="Rouge" selected>Rouge</option>
+        <select #type="ngModel" [(ngModel)]="wine.type"
+                class="form-control" id="type" name="type" required>
+          <option selected value="Rouge">Rouge</option>
           <option value="Blanc">Blanc</option>
           <option value="Rosé">Rosé</option>
         </select>
@@ -35,23 +35,25 @@
       <!-- MILLESIME -->
       <div class="form-group">
         <label for="millesime">Millésime</label>
-        <input type="number" [(ngModel)]="wine.millesime"
-          class="form-control" id="millesime" name="millesime" placeholder="Entrer le millésime"
-          required #millesime="ngModel">
+        <input #millesime="ngModel" [(ngModel)]="wine.millesime"
+               class="form-control" id="millesime" name="millesime" placeholder="Entrer le millésime"
+               required type="number">
       </div>
       <div [hidden]="!millesime.pristine" class="alert alert-danger">Millésime requis</div>
 
       <!-- NOMBRE BOUTEILLES ACHETEES -->
       <div class="form-group">
         <label for="nbBouteillesAchetees">Nombre bouteilles achetées</label>
-        <input type="number" [(ngModel)]="wine.nbBouteillesAchetees"
-          class="form-control" id="nbBouteillesAchetees" name="nbBouteillesAchetees" placeholder="Entrer le nombre de bouteilles achetées"
-          required #nbBouteillesAchetees="ngModel">
+        <input #nbBouteillesAchetees="ngModel" [(ngModel)]="wine.nbBouteillesAchetees"
+               class="form-control" id="nbBouteillesAchetees" name="nbBouteillesAchetees"
+               placeholder="Entrer le nombre de bouteilles achetées"
+               required type="number">
       </div>
-      <div [hidden]="!nbBouteillesAchetees.pristine" class="alert alert-danger">Nombre de bouteilles achetées requis</div>
+      <div [hidden]="!nbBouteillesAchetees.pristine" class="alert alert-danger">Nombre de bouteilles achetées requis
+      </div>
 
       <!-- SUBMIT -->
-      <button type="submit" [disabled]="!wineForm.form.valid" class="btn centered btn-success">Valider l'ajout</button>
+      <button [disabled]="!wineForm.form.valid" class="btn centered btn-success" type="submit">Valider l'ajout</button>
     </form>
   </div>
 </div>
