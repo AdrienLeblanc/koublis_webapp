@@ -1,3 +1,12 @@
+<p>
+  Filtres
+</p>
+
+<input type="text" [(ngModel)] = "fields.appellation" (ngModelChange)="updateFilters()" placeholder="Appellation ..."/>
+<input type="text" [(ngModel)] = "fields.nomChateau" (ngModelChange)="updateFilters()" placeholder="Nom du château ..."/>
+<input type="text" [(ngModel)] = "fields.type" (ngModelChange)="updateFilters()" placeholder="Type ..."/>
+<input type="text" [(ngModel)] = "fields.millesime" (ngModelChange)="updateFilters()" placeholder="Millésime ..."/>
+
 <div class="card my-5">
   <div class="card-body">
     <table class="table table-bordered table-responsive-sm table-striped table-hover text-center table-sm"
@@ -16,7 +25,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let wine of wines; let i = index"
+      <tr *ngFor="let wine of wines | filter: filters; let i = index"
           [ngClass]="{'table-warning': wine.nbBouteillesStock === 0, '': wine.nbBouteillesStock !== 0 }">
         <td style="vertical-align:middle"> {{ i + 1 }}</td>
         <td>

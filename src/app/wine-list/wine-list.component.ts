@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Wine } from '../model/wine';
 import { WineService } from '../service/wine.service';
 import { NotificationService } from '../service/notification.service';
+import { SearchFilterPipe } from '../search-filter.pipe';
 
 @Component({
   selector: 'app-wine-list',
@@ -17,12 +18,19 @@ export class WineListComponent implements OnInit {
   public confirmText: string = 'Confirmer';
   public cancelText: string = 'Annuler';
 
+  fields: any  = { appellation: "", nomChateau: "", type: "" , millesime: ""  };
+  filters: any = { appellation: "", nomChateau: "", type: "" , millesime: "" };
+
   constructor(private wineService: WineService,
               private notificationService: NotificationService) {
   }
 
   ngOnInit() {
     this.fetchData();
+  }
+
+  updateFilters(): void {
+      this.filters = Object.assign({}, this.fields);
   }
 
   fetchData() {
