@@ -1,5 +1,4 @@
 import { Injectable, Pipe, PipeTransform } from '@angular/core';
-import { Wine } from './model/wine';
 
 @Pipe({
   name: 'filter'

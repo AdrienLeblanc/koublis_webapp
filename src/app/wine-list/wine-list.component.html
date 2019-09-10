@@ -1,28 +1,28 @@
 <div class="card my-5">
   <div class="card-body">
     <div class="card-heading">
-      <h4 class="card-title">
-        <button class="btn centered btn-info" data-toggle="collapse" data-target="#filterContainer" aria-expanded="true" aria-controls="filterContainer">
-          Filtres
-        </button>
-      </h4>
+      <button class="btn centered btn-info" data-toggle="collapse" data-target="#filterContainer" aria-expanded="true" aria-controls="filterContainer">
+        Filtres
+      </button>
     </div>
-    <div id="filterContainer" class="card-collapse collapse">
-      <div class="form-group">
-        <label for="filtreAppellation">Appellation</label>
-        <input id="filtreAppellation" class="col-md-2 form-control" type="text" [(ngModel)] = "fields.appellation" (ngModelChange)="updateFilters()" placeholder="Ex: Beaujolais"/>
-      </div>
-      <div class="form-group">
-        <label for="filtreNomChateau">Nom château</label>
-        <input id="filtreNomChateau" class="col-md-2 form-control" type="text" [(ngModel)] = "fields.nomChateau" (ngModelChange)="updateFilters()" placeholder="Ex: Charmilles"/>
-      </div>
-      <div class="form-group">
-        <label for="filtreType">Type</label>
-        <input id="filtreType" class="col-md-2 form-control" type="text" [(ngModel)] = "fields.type" (ngModelChange)="updateFilters()" placeholder="Ex: Rosé"/>
-      </div>
-      <div class="form-group">
-        <label for="filtreMillesime">Millésime</label>
-        <input id="filtreMillesime" class="col-md-2 form-control" type="text" [(ngModel)] = "fields.millesime" (ngModelChange)="updateFilters()" placeholder="Ex: 2008"/>
+    <div id="filterContainer" class="card-body card-collapse collapse">
+      <div class="row">
+        <div class="form-group">
+          <label for="filtreAppellation">Appellation</label>
+          <input id="filtreAppellation" class="col-md-11 form-control" type="text" [(ngModel)] = "fields.appellation" (ngModelChange)="updateFilters()" placeholder="Ex: Beaujolais"/>
+        </div>
+        <div class="form-group">
+          <label for="filtreNomChateau">Nom château</label>
+          <input id="filtreNomChateau" class="col-md-11 form-control" type="text" [(ngModel)] = "fields.nomChateau" (ngModelChange)="updateFilters()" placeholder="Ex: Charmilles"/>
+        </div>
+        <div class="form-group">
+          <label for="filtreType">Type</label>
+          <input id="filtreType" class="col-md-11 form-control" type="text" [(ngModel)] = "fields.type" (ngModelChange)="updateFilters()" placeholder="Ex: Rosé"/>
+        </div>
+        <div class="form-group">
+          <label for="filtreMillesime">Millésime</label>
+          <input id="filtreMillesime" class="col-md-11 form-control" type="text" [(ngModel)] = "fields.millesime" (ngModelChange)="updateFilters()" placeholder="Ex: 2008"/>
+        </div>
       </div>
     </div>
   </div>
